@@ -1,0 +1,179 @@
+<!-- Homepage -->
+
+<!DOCTYPE html>
+<html lang="en-US"> 
+<script language="javascript" type="text/javascript" src="jquery-3.5.1.min.js"></script>
+<script language="javascript" type="text/javascript" src="jquery.flot.js"></script>
+<script language="javascript" type="text/javascript" src="jquery.flot.symbol.js"></script>
+<script language="javascript" type="text/javascript" src="jquery.flot.axislabels.js"></script>
+<script language="javascript" type="text/javascript" src="jquery.flot.time.js"></script>
+
+<head>
+<meta charset="UTF-8">
+
+
+<link rel="stylesheet" type="text/css" href="../content/style.css"></link>
+			
+<center>
+<a href="index.html" rel="home">
+		</a></center>
+
+<body bgcolor = "#1DB954"><!--style="font-size:0px"-->
+<center>
+<div class = buttonHolder>
+<a href="../index.php"> <button class = "button">[Home]</button></a>
+<a href="../recommender/index.php"> <button class = "button">[Music Recommender]</button></a>
+<a href="../visual/index.php"> <button class = "button currentButton">[Taste Visualizer]</button></a>
+<a href="../bands/index.php"> <button class = "button">[Nearby Bands]</button></a>
+<a href="../accom/index.php"> <button class = "button">[Accommodation]</button></a>
+</div></center>
+</body>
+
+
+</div></div>
+
+	<body>
+				<header>
+				
+								<h1>Taste Visualizer</h1>
+								
+			</header><!-- .page-header -->
+			<hr>
+				
+				
+				<div id="placeholder" style="width:600px;height:300px;"></div>
+				<script type="text/javascript">
+				var data1 = [[1, 10], [2, 20], [3, 30], [4, 40], [5, 50], [6, 60]];
+				var data2 = [[1, 60], [2, 50], [3, 40], [4, 30], [5, 20], [6, 10]];
+                var data3 = [[1, 10], [2, 20], [3, 30], [4, 30], [5, 20], [6, 10]];
+
+
+var dataset = [
+    {
+        label: "data1",
+        data: data1,
+        yaxis: 1,
+        color: "#FF0000",
+        //points: { symbol: "circle", fillColor: "#FF0000", show: true },
+        lines: { show: true }
+    }, {
+        label: "data2",
+        data: data2,
+        yaxis: 1,
+        color: "#0062FF",
+        //points: { symbol: "triangle", fillColor: "#0062FF", show: true },
+        lines: {show:true}
+    }, {
+        label: "data3",
+        data: data3,
+        yaxis: 1,
+        color: "#319400",
+        //points: { symbol: "diamond", fillColor: "#319400", show: true },
+        lines: { show: true }
+    }
+];
+
+
+var options = {
+    xaxis: {
+		position: "bottom",
+		color: "black",
+		axisLabel: "Time over Months",
+		axisLabelUseCanvas: true,
+		axisLabelFontSizePixels: 12,
+		axisLabelFontFamily: 'Verdana, Arial',
+		axisLabelPadding: 3
+    },
+    yaxes: [{
+        position: "left",
+        color: "black",
+        axisLabel: "Number of Songs",
+        axisLabelUseCanvas: true,
+        axisLabelFontSizePixels: 12,
+        axisLabelFontFamily: 'Verdana, Arial',
+        axisLabelPadding: 3
+    }
+],
+    legend: {
+		//show: true,
+        noColumns: 0,
+        // labelFormatter: function (label, series) {
+        //     return "<font color=\"white\">" + label + "</font>";
+        // },            
+        backgroundColor: "green",
+        backgroundOpacity: 0.1,
+        //labelBoxBorderColor: "#ffffff"
+		//position: "nw",
+    },
+    grid: {
+        hoverable: true,
+        borderWidth: 3,
+        mouseActiveRadius: 50,
+        backgroundColor: { colors: ["#ffffff", "#EDF5FF"] },
+        axisMargin: 20
+    }
+};
+
+$(document).ready(function () {
+    $.plot($("#placeholder"), dataset, options);
+    $("#placeholder").UseTooltip();
+});
+
+
+
+
+function gd(year, month, day) {
+    return new Date(year, month - 1, day).getTime();
+}
+
+var previousPoint = null, previousLabel = null;
+
+$.fn.UseTooltip = function () {
+    $(this).bind("plothover", function (event, pos, item) {
+        if (item) {
+            if ((previousLabel != item.series.label) || (previousPoint != item.dataIndex)) {
+                previousPoint = item.dataIndex;
+                previousLabel = item.series.label;
+                $("#tooltip").remove();
+                
+                var x = item.datapoint[0];
+                var y = item.datapoint[1];
+
+                var color = item.series.color;
+
+                showTooltip(item.pageX, item.pageY, color,
+                            "<strong>" + item.series.label + "</strong>"  +
+                            " : <strong>" + y + "</strong> ");
+            }
+        } else {
+            $("#tooltip").remove();
+            previousPoint = null;
+        }
+    });
+};
+
+function showTooltip(x, y, color, contents) {
+    $('<div id="tooltip">' + contents + '</div>').css({
+        position: 'absolute',
+        display: 'none',
+        top: y - 40,
+        left: x - 120,
+        border: '2px solid ' + color,
+        padding: '3px',
+        'font-size': '9px',
+        'border-radius': '5px',
+        'background-color': '#fff',
+        'font-family': 'Verdana, Arial, Helvetica, Tahoma, sans-serif',
+        opacity: 0.9
+    }).appendTo("body").fadeIn(200);
+}
+
+				</script>
+				</body>
+				
+				<br style="clear:left;"/>
+				<hr>
+
+
+ 
+</html>

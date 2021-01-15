@@ -1,0 +1,102 @@
+body {
+  max-width: 900px;
+  min-width: 100px;
+  margin: auto;
+  width: 50%;
+  border: auto solid green;
+  padding: 10px;
+  background-color: #FFFFFF;
+  color: black;
+}
+
+.center {
+  margin: ;
+  width: 50%;
+  border: px solid green;
+  background-color: #FFFFFF;
+  padding: 10px;
+}
+
+.buttonHolder {
+	background-color: #1DB954;
+	font-size: 0px;
+	width: 100%;
+}
+
+.button {
+  border: none #1DB954;
+  color: black;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin: 4px 2px #1DB954;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.contact {
+  border: solid 2px #1DB954;
+  color: black;
+  padding: 10px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px #1DB954;
+  
+  max-width: 50%;
+  float:right;
+}
+
+.currentButton {
+  background-color: #1DB954;
+  color: white;
+}
+
+.button:hover {
+  background-color: #1DB954;
+  color: white;
+}
+
+.thumbnail {
+    display:block;
+    /* set width to 100%  */
+    max-width: 100%; 
+    height: auto;
+    width: auto;
+}
+
+.thumbnail2 {
+    display:block;
+    /* set width to 33%  */
+    max-width: 40%; 
+    height: auto;
+    width: auto;
+}
+
+.thumbnail3 {
+    display:block;
+    /* set width to 33%  */
+    max-width: 50%; 
+    height: auto;
+    width: auto;
+}
+
+.row {
+  width: 800px
+  display: flex;
+}
+
+.column {
+  flex-basis: 300px;
+  padding: 0px;
+}
+
+a.external {
+    background: url(/content/External.png) center right no-repeat;
+    padding-right: 13px;
+}
+
+}
